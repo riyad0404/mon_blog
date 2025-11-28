@@ -1,47 +1,117 @@
-/* Pour pouvoir utiliser une hauteur (height) ou une hauteur minimale
-   (min-height) sur un bloc, il faut que son parent direct ait lui-même une
-   hauteur déterminée (donc toute valeur de height sauf "auto": hauteur en
-   pixels, em, autres unités...).
-   Si la hauteur du parent est en pourcentage, elle se réfère alors à la
-   hauteur du «grand-père», et ainsi de suite.
-   Pour pouvoir utiliser un "min-height: 100%" sur div#global, il nous faut:
-   - un parent (body) en "height: 100%";
-   - le parent de body également en "height: 100%". */
-html, body {
-    height: 100%;
+/* ------------------------
+   RESET & BASE
+------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    color: #bfbfbf;
-    background: black;
-    font-family: 'Futura-Medium', 'Futura', 'Trebuchet MS', sans-serif;
+    background: #0f0f0f;
+    font-family: "Inter", Arial, sans-serif;
+    color: #e6e6e6;
+    line-height: 1.6;
 }
 
-h1 {
-    color: white;
-}
-
-.titreBillet {
-    margin-bottom : 0px;
-}
-
+/* Container global */
 #global {
-    min-height: 100%;  /* Voir commentaire sur html et body plus haut */
-    background: #333534;
-    width: 70%;
-    margin: auto;	/* Permet de centrer la div */
-    text-align: justify;
-    padding: 5px 20px;
+    width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: #1a1a1a;
+    border-radius: 12px;
+
+    /* Glow urban violet */
+    box-shadow: 0 0 40px rgba(125, 75, 255, 0.20);
+    border: 1px solid rgba(125, 75, 255, 0.20);
 }
 
-#contenu {
-    margin-bottom : 30px;
-}
+/* ------------------------
+   HEADER
+------------------------ */
 
-#titreBlog, #piedBlog {
+header {
     text-align: center;
+    margin-bottom: 40px;
 }
 
-#titreReponses {
-    font-size : 100%;
+#titreBlog {
+    font-size: 44px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+
+    /* Neon effect */
+    color: #b388ff;
+    text-shadow: 0 0 8px rgba(179, 136, 255, 0.6),
+                 0 0 20px rgba(138, 43, 226, 0.5);
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #cccccc;
+}
+
+/* ------------------------
+   CONTENU (billets)
+------------------------ */
+#contenu {
+    margin-top: 20px;
+}
+
+/* Titres des billets */
+h2 {
+    font-size: 32px;
+    margin-bottom: 5px;
+    color: #eaeaea;
+    font-weight: 700;
+}
+
+/* Date des billets */
+.date {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+/* Texte du billet */
+p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* Séparateur entre billets */
+hr {
+    border: none;
+    height: 1px;
+    margin: 35px 0;
+    background: linear-gradient(90deg, rgba(138,43,226,0), rgba(138,43,226,0.8), rgba(138,43,226,0));
+}
+
+/* ------------------------
+   LINKS
+------------------------ */
+a {
+    color: #bb86fc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #d7b7ff;
+    text-shadow: 0 0 6px rgba(187, 134, 252, 0.6);
+}
+
+/* ------------------------
+   FOOTER
+------------------------ */
+#piedBlog {
+    margin-top: 40px;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+    color: #c7c7c7;
+    border-top: 1px solid rgba(120, 120, 120, 0.4);
 }
