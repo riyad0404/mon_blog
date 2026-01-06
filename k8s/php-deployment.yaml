@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monblog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monblog
+  template:
+    metadata:
+      labels:
+        app: monblog
+    spec:
+      containers:
+      - name: monblog
+        image: monblog-monblog:latest
+        imagePullPolicy: Never
+        env:
+        - name: DB_HOST
+          value: mysql
+        - name: DB_NAME
+          value: monblog
+        - name: DB_USER
+          value: root
+        - name: DB_PASSWORD
+          value: ""
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: monblog
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+  selector:
+    app: monblog
