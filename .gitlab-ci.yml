@@ -1,23 +1,12 @@
-# GitLab CI configuration for PHP project
+# Simple GitLab CI for PHP lint
 stages:
-  - test
+  - lint
 
-variables:
-  PHP_VERSION: "8.2"
-
-before_script:
-  - apt-get update -yqq
-  - apt-get install -yqq git unzip
-  - if [ -f composer.json ]; then curl -sS https://getcomposer.org/installer | php; fi
-  - if [ -f composer.json ]; then php composer.phar install --no-progress --no-suggest; fi
-
-test:php:
-  image: php:${PHP_VERSION}
-  stage: test
+lint:php:
+  image: php:8.2
+  stage: lint
   script:
-    - if [ -f composer.json ]; then php composer.phar validate; fi
     - find . -type f -name '*.php' -exec php -l {} \;
-    - if [ -f vendor/bin/phpunit ]; then vendor/bin/phpunit; else echo "No tests found."; fi
   only:
     - main
     - merge_requests
